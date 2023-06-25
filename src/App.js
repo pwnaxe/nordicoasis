@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   BrowserRouter,
   Route,
@@ -9,7 +9,26 @@ import Navbar from './components/Navbar';
 import Top from './components/Top';
 import About from './components/About';
 import Subscription from './components/Subscription';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./App.css";
+
+
+const theme = createTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    primary: {
+      main: '#1D4130',
+      darker: '#053e85',
+      contrastText: '#FFFFFF',
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#FFFFFF',
+    },
+  },
+});
 
 function App() {
   return (
@@ -19,12 +38,14 @@ function App() {
         <Route
           path="/"
           element={
-            <React.Fragment>
-              <Navbar />
-              <Top />
-              <About />
-              <Subscription />
-            </React.Fragment>
+            <>
+              <ThemeProvider theme={theme}>
+                <Navbar />
+                <Top />
+                <About />
+                <Subscription />
+              </ThemeProvider>
+            </>
           }
         />
       </Routes>
